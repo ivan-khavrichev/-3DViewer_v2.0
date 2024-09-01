@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>misc/icon.ico</file>
+        <file>misc/line_solid.png</file>
+        <file>misc/line_dashed.png</file>
+        <file>misc/line_thickness.png</file>
+        <file>misc/line_color.png</file>
+        <file>misc/vertice_none.png</file>
+        <file>misc/vertice_circle.png</file>
+        <file>misc/vertice_square.png</file>
+        <file>misc/vertice_colors.png</file>
+        <file>misc/vertice_size.png</file>
+        <file>misc/background_colors.png</file>
+        <file>misc/folder.png</file>
+        <file>misc/jpeg.png</file>
+        <file>misc/gif.png</file>
+        <file>misc/bmp.png</file>
+    </qresource>
+</RCC>

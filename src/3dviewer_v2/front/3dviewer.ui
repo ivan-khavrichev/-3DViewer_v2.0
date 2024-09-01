@@ -1,0 +1,1842 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Viewer3D</class>
+ <widget class="QMainWindow" name="Viewer3D">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1230</width>
+    <height>620</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1230</width>
+    <height>620</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1230</width>
+    <height>620</height>
+   </size>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>3DViewer_1.0</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/misc/icon_3dviewer.icns</normaloff>:/misc/icon_3dviewer.icns</iconset>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+   background-color: rgb(255, 255, 255);
+}</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>30</width>
+    <height>30</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="s21::Glwidget" name="openGLWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>620</width>
+      <height>620</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_upload">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>10</y>
+      <width>351</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Информация о модели:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QScrollBar" name="ScrollBarTranslationX">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>228</y>
+      <width>160</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QScrollBar:horizontal {
+     border: 1px solid #ccc;
+    	border-radius: 8px;
+     background: white;
+ }
+
+QScrollBar::handle {
+     background: rgb(194, 194, 194);
+	border-radius: 7px;
+	padding-right: 3px;
+	padding-left: 3px;
+     min-width: 20px;
+ }
+
+QScrollBar::handle:pressed {
+     background: rgb(137, 137, 137);
+ }
+
+QScrollBar::handle:hover {
+     background: rgb(137, 137, 137);
+ }
+
+QScrollBar::add-line {
+     background: none;
+ }
+
+QScrollBar::sub-line {
+     background: none;
+ }
+</string>
+    </property>
+    <property name="minimum">
+     <number>-100</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="pageStep">
+     <number>1</number>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="RadioButtonParallel">
+    <property name="geometry">
+     <rect>
+      <x>655</x>
+      <y>530</y>
+      <width>120</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::TabFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QRadioButton {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Параллельная</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="RadioButtonCentral">
+    <property name="geometry">
+     <rect>
+      <x>655</x>
+      <y>550</y>
+      <width>120</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QRadioButton {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Центральная</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_translating_x">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>165</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Перемещение по оси X</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QScrollBar" name="ScrollBarTranslationY">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>338</y>
+      <width>160</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QScrollBar:horizontal {
+     border: 1px solid #ccc;
+    	border-radius: 8px;
+     background: white;
+ }
+
+QScrollBar::handle {
+     background: rgb(194, 194, 194);
+	border-radius: 7px;
+	padding-right: 3px;
+	padding-left: 3px;
+     min-width: 20px;
+ }
+
+QScrollBar::handle:pressed {
+     background: rgb(137, 137, 137);
+ }
+
+QScrollBar::handle:hover {
+     background: rgb(137, 137, 137);
+ }
+
+QScrollBar::add-line {
+     background: none;
+ }
+
+QScrollBar::sub-line {
+     background: none;
+ }
+</string>
+    </property>
+    <property name="minimum">
+     <number>-100</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_translating_y">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>275</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Перемещение по оси Y</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QScrollBar" name="ScrollBarTranslationZ">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>448</y>
+      <width>160</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QScrollBar:horizontal {
+     border: 1px solid #ccc;
+    	border-radius: 8px;
+     background: white;
+ }
+
+QScrollBar::handle {
+     background: rgb(194, 194, 194);
+	border-radius: 7px;
+	padding-right: 3px;
+	padding-left: 3px;
+     min-width: 20px;
+ }
+
+QScrollBar::handle:pressed {
+     background: rgb(137, 137, 137);
+ }
+
+QScrollBar::handle:hover {
+     background: rgb(137, 137, 137);
+ }
+
+QScrollBar::add-line {
+     background: none;
+ }
+
+QScrollBar::sub-line {
+     background: none;
+ }
+</string>
+    </property>
+    <property name="minimum">
+     <number>-100</number>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_translating_z">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>385</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Перемещение по оси Z</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_scaling">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>495</y>
+      <width>190</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Масштабирование модели</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_rotating_x">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>165</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Вращение вокруг оси X</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QSlider" name="SliderScaling">
+    <property name="geometry">
+     <rect>
+      <x>1015</x>
+      <y>554</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>200</number>
+    </property>
+    <property name="value">
+     <number>100</number>
+    </property>
+    <property name="sliderPosition">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_typeprojection">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>495</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Тип проекции</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_filename">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>55</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Имя файла:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_vertice">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>115</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Количество вершин:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_edge">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>85</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Количество рёбер:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="s21::Numlineedit" name="lineEdit_translating_x">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>195</y>
+      <width>160</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+     </font>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  	color: black;
+   	background-color: white;
+	font-size: 13px;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+    	padding-right: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="s21::Numlineedit" name="lineEdit_translating_y">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>305</y>
+      <width>160</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  	color: black;
+   	background-color: white;
+	font-size: 13px;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+    	padding-right: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="s21::Numlineedit" name="lineEdit_translating_z">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>415</y>
+      <width>160</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  	color: black;
+   	background-color: white;
+	font-size: 13px;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+    	padding-right: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="s21::Numlineedit" name="lineEdit_scaling">
+    <property name="geometry">
+     <rect>
+      <x>1015</x>
+      <y>530</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  	color: black;
+   	background-color: white;
+	font-size: 13px;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+    	padding-right: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="s21::Numlineedit" name="lineEdit_rotating_x">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>205</y>
+      <width>65</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  	color: black;
+   	background-color: white;
+	font-size: 13px;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+    	padding-right: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QDial" name="DialRotatingX">
+    <property name="geometry">
+     <rect>
+      <x>915</x>
+      <y>185</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QDial {
+	background: white;
+}</string>
+    </property>
+    <property name="minimum">
+     <number>-360</number>
+    </property>
+    <property name="maximum">
+     <number>360</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="pageStep">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_rotating_y">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>275</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Вращение вокруг оси Y</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="s21::Numlineedit" name="lineEdit_rotating_y">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>315</y>
+      <width>65</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  	color: black;
+   	background-color: white;
+	font-size: 13px;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+    	padding-right: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QDial" name="DialRotatingY">
+    <property name="geometry">
+     <rect>
+      <x>915</x>
+      <y>295</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QDial {
+	background: white;
+}</string>
+    </property>
+    <property name="minimum">
+     <number>-360</number>
+    </property>
+    <property name="maximum">
+     <number>360</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="pageStep">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_rotating_z">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>385</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Вращение вокруг оси Z</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="s21::Numlineedit" name="lineEdit_rotating_z">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>425</y>
+      <width>65</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  	color: black;
+   	background-color: white;
+	font-size: 13px;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+    	padding-right: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QDial" name="DialRotatingZ">
+    <property name="geometry">
+     <rect>
+      <x>915</x>
+      <y>405</y>
+      <width>60</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QDial {
+	background: white;
+}</string>
+    </property>
+    <property name="minimum">
+     <number>-360</number>
+    </property>
+    <property name="maximum">
+     <number>360</number>
+    </property>
+    <property name="singleStep">
+     <number>1</number>
+    </property>
+    <property name="pageStep">
+     <number>1</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_scaling_x">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>165</y>
+      <width>190</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Масштабирование по оси X</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_scaling_y">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>275</y>
+      <width>190</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Масштабирование по оси Y</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_scaling_z">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>385</y>
+      <width>190</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Масштабирование по оси Z</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="s21::Numlineedit" name="lineEdit_scaling_x">
+    <property name="geometry">
+     <rect>
+      <x>1015</x>
+      <y>195</y>
+      <width>160</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  	color: black;
+   	background-color: white;
+	font-size: 13px;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+    	padding-right: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="s21::Numlineedit" name="lineEdit_scaling_y">
+    <property name="geometry">
+     <rect>
+      <x>1015</x>
+      <y>305</y>
+      <width>160</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  	color: black;
+   	background-color: white;
+	font-size: 13px;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+    	padding-right: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="s21::Numlineedit" name="lineEdit_scaling_z">
+    <property name="geometry">
+     <rect>
+      <x>1015</x>
+      <y>415</y>
+      <width>160</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::ClickFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit {
+  	color: black;
+   	background-color: white;
+	font-size: 13px;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+    	padding-right: 5px;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="maxLength">
+     <number>8</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QSlider" name="SliderScalingX">
+    <property name="geometry">
+     <rect>
+      <x>1015</x>
+      <y>220</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>200</number>
+    </property>
+    <property name="singleStep">
+     <number>10</number>
+    </property>
+    <property name="pageStep">
+     <number>10</number>
+    </property>
+    <property name="value">
+     <number>100</number>
+    </property>
+    <property name="sliderPosition">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="SliderScalingY">
+    <property name="geometry">
+     <rect>
+      <x>1015</x>
+      <y>330</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>200</number>
+    </property>
+    <property name="value">
+     <number>100</number>
+    </property>
+    <property name="sliderPosition">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="SliderScalingZ">
+    <property name="geometry">
+     <rect>
+      <x>1015</x>
+      <y>440</y>
+      <width>160</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>200</number>
+    </property>
+    <property name="pageStep">
+     <number>10</number>
+    </property>
+    <property name="value">
+     <number>100</number>
+    </property>
+    <property name="sliderPosition">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_file">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>55</y>
+      <width>200</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_number_edges">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>85</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_number_vertices">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>115</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_scaling_2">
+    <property name="geometry">
+     <rect>
+      <x>820</x>
+      <y>495</y>
+      <width>160</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Начальное положение</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="CheckBoxTranslating">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>520</y>
+      <width>120</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Перемещение</string>
+    </property>
+    <property name="tristate">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="CheckBoxRotating">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>540</y>
+      <width>120</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Вращение</string>
+    </property>
+    <property name="tristate">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="CheckBoxScaling">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>560</y>
+      <width>120</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QCheckBox {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Масштаб</string>
+    </property>
+    <property name="tristate">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_save_bmp">
+    <property name="geometry">
+     <rect>
+      <x>1015</x>
+      <y>87</y>
+      <width>40</width>
+      <height>43</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	background: white;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+ 
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../pictures.qrc">
+      <normaloff>:/misc/bmp.png</normaloff>:/misc/bmp.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>36</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_save_jpeg">
+    <property name="geometry">
+     <rect>
+      <x>1075</x>
+      <y>87</y>
+      <width>40</width>
+      <height>43</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	background: white;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+ 
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../pictures.qrc">
+      <normaloff>:/misc/jpeg.png</normaloff>:/misc/jpeg.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>36</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_save_gif">
+    <property name="geometry">
+     <rect>
+      <x>1135</x>
+      <y>87</y>
+      <width>40</width>
+      <height>43</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	background: white;
+    	border: 1px solid #ccc;
+    	border-radius: 8px;
+ 
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../pictures.qrc">
+      <normaloff>:/misc/gif.png</normaloff>:/misc/gif.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>36</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_save_as">
+    <property name="geometry">
+     <rect>
+      <x>1000</x>
+      <y>55</y>
+      <width>190</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLabel {
+  color: black;
+   background-color: white;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Сохранить как:</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1230</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menuSaveAS">
+     <property name="title">
+      <string>Сохранить как...</string>
+     </property>
+     <addaction name="actionFormat_bmp"/>
+     <addaction name="actionFormat_jpeg"/>
+     <addaction name="actionFormat_gif"/>
+    </widget>
+    <addaction name="actionOpenFile"/>
+    <addaction name="menuSaveAS"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <widget class="QMenu" name="menuEdges">
+     <property name="cursor">
+      <cursorShape>ArrowCursor</cursorShape>
+     </property>
+     <property name="title">
+      <string>Рёбра</string>
+     </property>
+     <widget class="QMenu" name="menuTypeEdge">
+      <property name="title">
+       <string>Тип</string>
+      </property>
+      <addaction name="actionEdgeTypeSolid"/>
+      <addaction name="actionEdgeTypeDashed"/>
+     </widget>
+     <addaction name="menuTypeEdge"/>
+     <addaction name="separator"/>
+     <addaction name="actionEdgeThickness"/>
+     <addaction name="separator"/>
+     <addaction name="actionEdgeColor"/>
+    </widget>
+    <widget class="QMenu" name="menuVertices">
+     <property name="title">
+      <string>Вершины</string>
+     </property>
+     <widget class="QMenu" name="menuTypeVertice">
+      <property name="title">
+       <string>Тип</string>
+      </property>
+      <addaction name="actionVerticeTypeNone"/>
+      <addaction name="actionVerticeTypeCircle"/>
+      <addaction name="actionVerticeTypeSquare"/>
+     </widget>
+     <addaction name="menuTypeVertice"/>
+     <addaction name="separator"/>
+     <addaction name="actionVerticeSize"/>
+     <addaction name="separator"/>
+     <addaction name="actionVerticeColor"/>
+    </widget>
+    <addaction name="menuEdges"/>
+    <addaction name="menuVertices"/>
+    <addaction name="actionBackground"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuView"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QToolBar {
+  color: black;
+   background-color: white;
+}
+</string>
+   </property>
+   <property name="movable">
+    <bool>true</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>21</width>
+     <height>21</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpenFile"/>
+   <addaction name="separator"/>
+   <addaction name="actionEdgeTypeSolid"/>
+   <addaction name="actionEdgeTypeDashed"/>
+   <addaction name="actionEdgeThickness"/>
+   <addaction name="actionEdgeColor"/>
+   <addaction name="separator"/>
+   <addaction name="actionVerticeTypeNone"/>
+   <addaction name="actionVerticeTypeCircle"/>
+   <addaction name="actionVerticeTypeSquare"/>
+   <addaction name="actionVerticeSize"/>
+   <addaction name="actionVerticeColor"/>
+   <addaction name="separator"/>
+   <addaction name="actionBackground"/>
+  </widget>
+  <action name="actionOpenFile">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../pictures.qrc">
+     <normaloff>:/misc/folder.png</normaloff>:/misc/folder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Открыть файл</string>
+   </property>
+   <property name="toolTip">
+    <string>Открыть файл</string>
+   </property>
+   <property name="shortcut">
+    <string>Meta+O</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionFormat_bmp">
+   <property name="text">
+    <string>Сохранить как bmp</string>
+   </property>
+  </action>
+  <action name="actionFormat_jpeg">
+   <property name="text">
+    <string>Сохранить как jpeg</string>
+   </property>
+  </action>
+  <action name="actionBackground">
+   <property name="icon">
+    <iconset resource="../pictures.qrc">
+     <normaloff>:/misc/background_colors.png</normaloff>:/misc/background_colors.png</iconset>
+   </property>
+   <property name="text">
+    <string>Цвет фона</string>
+   </property>
+   <property name="toolTip">
+    <string>Цвет фона</string>
+   </property>
+  </action>
+  <action name="actionEdgeColor">
+   <property name="icon">
+    <iconset resource="../pictures.qrc">
+     <normaloff>:/misc/line_color.png</normaloff>:/misc/line_color.png</iconset>
+   </property>
+   <property name="text">
+    <string>Цвет</string>
+   </property>
+   <property name="toolTip">
+    <string>Цвет рёбер</string>
+   </property>
+   <property name="iconVisibleInMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionEdgeThickness">
+   <property name="icon">
+    <iconset resource="../pictures.qrc">
+     <normaloff>:/misc/line_thickness.png</normaloff>:/misc/line_thickness.png</iconset>
+   </property>
+   <property name="text">
+    <string>Толщина</string>
+   </property>
+   <property name="toolTip">
+    <string>Толщина рёбер</string>
+   </property>
+  </action>
+  <action name="actionVerticeSize">
+   <property name="icon">
+    <iconset resource="../pictures.qrc">
+     <normaloff>:/misc/vertice_size.png</normaloff>:/misc/vertice_size.png</iconset>
+   </property>
+   <property name="text">
+    <string>Размер</string>
+   </property>
+   <property name="toolTip">
+    <string>Размер вершины</string>
+   </property>
+  </action>
+  <action name="actionVerticeColor">
+   <property name="icon">
+    <iconset resource="../pictures.qrc">
+     <normaloff>:/misc/vertice_colors.png</normaloff>:/misc/vertice_colors.png</iconset>
+   </property>
+   <property name="text">
+    <string>Цвет</string>
+   </property>
+   <property name="toolTip">
+    <string>Цвет вершины</string>
+   </property>
+  </action>
+  <action name="actionVerticeTypeNone">
+   <property name="icon">
+    <iconset resource="../pictures.qrc">
+     <normaloff>:/misc/vertice_none.png</normaloff>:/misc/vertice_none.png</iconset>
+   </property>
+   <property name="text">
+    <string>Отсутствует</string>
+   </property>
+   <property name="toolTip">
+    <string>Тип вершины: отсутствует</string>
+   </property>
+  </action>
+  <action name="actionVerticeTypeCircle">
+   <property name="icon">
+    <iconset resource="../pictures.qrc">
+     <normaloff>:/misc/vertice_circle.png</normaloff>:/misc/vertice_circle.png</iconset>
+   </property>
+   <property name="text">
+    <string>Круг</string>
+   </property>
+   <property name="toolTip">
+    <string>Тип вершины: круг</string>
+   </property>
+  </action>
+  <action name="actionVerticeTypeSquare">
+   <property name="icon">
+    <iconset resource="../pictures.qrc">
+     <normaloff>:/misc/vertice_square.png</normaloff>:/misc/vertice_square.png</iconset>
+   </property>
+   <property name="text">
+    <string>Квадрат</string>
+   </property>
+   <property name="toolTip">
+    <string>Тип вершины: квадрат</string>
+   </property>
+  </action>
+  <action name="actionFormat_gif">
+   <property name="text">
+    <string>Сохранить как gif</string>
+   </property>
+  </action>
+  <action name="actionEdgeTypeSolid">
+   <property name="icon">
+    <iconset resource="../pictures.qrc">
+     <normaloff>:/misc/line_solid.png</normaloff>:/misc/line_solid.png</iconset>
+   </property>
+   <property name="text">
+    <string>Сплошное</string>
+   </property>
+   <property name="toolTip">
+    <string>Тип ребра: сплошное</string>
+   </property>
+  </action>
+  <action name="actionEdgeTypeDashed">
+   <property name="icon">
+    <iconset resource="../pictures.qrc">
+     <normaloff>:/misc/line_dashed.png</normaloff>:/misc/line_dashed.png</iconset>
+   </property>
+   <property name="text">
+    <string>Пунктирное</string>
+   </property>
+   <property name="toolTip">
+    <string>Тип ребра: пунктирное</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Numlineedit</class>
+   <extends>QLineEdit</extends>
+   <header location="global">numlineedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Glwidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header location="global">glwidget.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../pictures.qrc"/>
+ </resources>
+ <connections/>
+</ui>
